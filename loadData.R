@@ -6,9 +6,11 @@ library(data.table)
 loadData <- function() {
   if(!file.exists('data')){ dir.create('data') }
   if(!file.exists('./data/household_power_consumption.txt')){
-    fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
     fileName <- "./data/household_power_consumption.zip"
-    download.file(fileUrl, destfile=fileName, method='curl')
+    if(!file.exists(fileName)){
+      fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+      download.file(fileUrl, destfile=fileName, method='curl')
+    }
     unzip(fileName, exdir="data")
   }
   DT <- read.table("./data/household_power_consumption.txt", sep=";", na.strings="?", header=TRUE, colClasses=c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
