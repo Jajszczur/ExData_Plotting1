@@ -5,7 +5,7 @@ source('loadData.R')
 ## Loads data, opens a png file and saves the plot in it
 createPlot3 <- function() {
   data <- loadData()
-  png(filename="plot3.png", width=480, height=480, units="px")
+  png(filename="plot3.png", width=480, height=480, units="px", bg="transparent")
   plot(data$Time, data$Sub_metering_1, type='n', ylab='Energy sub metering', xlab='')
   lines(data$Time, data$Sub_metering_1)
   lines(data$Time, data$Sub_metering_2, col='red')
